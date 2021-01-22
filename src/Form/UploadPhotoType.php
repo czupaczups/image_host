@@ -4,12 +4,11 @@ namespace App\Form;
 
 use App\Entity\Photo;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-
 
 class UploadPhotoType extends AbstractType
 {
@@ -24,15 +23,14 @@ class UploadPhotoType extends AbstractType
                         'mimeTypes' => [
                             'image/*'
                         ],
-                        'mimeTypesMessage' => 'obsługowany tylko obraz'
+                        'mimeTypesMessage' => 'Obsługiwany format pliku musi być obrazem'
                     ])
                 ]
             ])
             ->add('is_public', CheckboxType::class, [
                 'label' => 'Publiczne',
                 'required' => false
-             ]);
-
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

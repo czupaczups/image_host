@@ -20,7 +20,7 @@
 
         <div class="mt-5">
             <div class="row">
-                {% for photo in latestPhotoPublic %}
+                {% for photo in myPhotos %}
                     <div class="col-sm-12 col-lg-4">
                         <div class="card-deck">
                             <div class="card d-flex justify-content-between">
@@ -31,7 +31,7 @@
                                     <small class="text-muted">Wysłano: {{ photo.uploadedAt|date('d.m.Y H:i:s') }}</small>
                                     <small class="text-muted">Dodał: {{ photo.user.username }}</small>
                                     <p>
-
+                                       
                                     </p>
                                 </div>
                             </div>

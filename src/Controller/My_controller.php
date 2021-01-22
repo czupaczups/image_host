@@ -1,8 +1,18 @@
 <?php
 namespace  App\Controller;
 
+use App\Entity\Photo;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Filesystem\Filesystem;
+
+/**
+ * Class My_controller
+ * @package App\Controller
+ * @IsGranted("ROLE_USER")
+ */
 
 class My_controller extends AbstractController
 {
@@ -11,15 +21,19 @@ class My_controller extends AbstractController
      */
     public function index()
     {
-
+        $em = $this->getDoctrine()->getManager();
+        $myPhotos = $em->getRepository(Photo::class)->findBy(['user' =>$this->getUser()]);
+        return $this->render('my/index.html.twig', [
+            'myPhotos' => $myPhotos
+        ]);
     }
 
     /**
      * @Route ("/my/photos/set_private/{id}", name="my_photos_set_as_private")
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
-    public function myPhotoSetAsPrivate(int $id): \Symfony\Component\HttpFoundation\RedirectResponse
+    public function myPhotoSetAsPrivate(int $id): RedirectResponse
     {
         $em = $this ->getDoctrine()->getManager();
         $myPhoto = $em->getRepository( Photo::class)->find($id);
@@ -45,12 +59,13 @@ class My_controller extends AbstractController
     /**
      * @Route ("/my/photos/set_pulic/{id}", name="my_photos_set_as_public")
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
-    public function myPhotoSetAsPublic(int $id): \Symfony\Component\HttpFoundation\RedirectResponse
+    public function myPhotoSetAsPublic(int $id): RedirectResponse
     {
         $em = $this ->getDoctrine()->getManager();
         $myPhoto = $em->getRepository( Photo::class)->find($id);
+
 
         if ($this ->getUser() == $myPhoto->getUser())
         {
@@ -73,7 +88,7 @@ class My_controller extends AbstractController
     /**
      * @Route("/my/photos/remove/{id}", name="my_photos_remove")
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function myPhotoRemove(int $id){
         $em = $this->getDoctrine()->getManager();
