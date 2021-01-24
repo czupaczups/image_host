@@ -2,17 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PhotoRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
  */
 class Photo
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -23,7 +22,7 @@ class Photo
     private $filename;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="photos")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

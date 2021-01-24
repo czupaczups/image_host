@@ -20,21 +20,11 @@
 
         <div class="mt-5">
             <div class="row">
-                {% for photo in latestPhotoPublic %}
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="card-deck">
-                            <div class="card d-flex justify-content-between">
-                                <div class="imageGallery1">
-                                    <a href="/images/hosting/{{ photo.filename }}"><img src="/images/hosting/{{ photo.filename }}" class="card-img-top" alt=""></a>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">Wysłano: {{ photo.uploadedAt|date('d.m.Y H:i:s') }}</small>
-                                    <small class="text-muted">Dodał: {{ photo.user.username }}</small>
-                                    <p>
-
-                                    </p>
-                                </div>
-                            </div>
+                {% for photo in latestPhotosPublic %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="/public/images/hosting/{{ photo.filename }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
                 {% endfor %}

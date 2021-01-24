@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent () }} strona gowna !{% endblock %}
+{% block title %}{{ parent() }}Strona główna{% endblock %}
 
 {% block content %}
-
     <div class="container">
         <div class="card mt-5">
             <div class="card-body">
-                Za pomocą naszego serwisu wgrasz zdjęcia i zapiszesz je w swojej bibliotece zdjęć.
+                Za pomocą naszego serwisu wgrasz zdjęcia i zapiszesz je wrtnrtn swojej bibliotece zdjęć.
             </div>
         </div>
 
@@ -17,22 +16,22 @@
                     <div class="d-flex flex-column mb-4">
                         <h1 class="text-center mb-4 h4">Wgrywaj dowolne zdjęcia!</h1>
                         {{ form_start(form, {'attr': {'class': 'd-flex flex-column mb-4'}}) }}
-                            {{ form_row (form.filename) }}
-                        <div class="align-self-center">
-                            {{ form_row(form.is_public, {'label_attr': {'class': 'font-weight-bold mt-4 mb-5 ml-2'}}) }}
-                        </div>
-                        <input type="submit" value="Wyślij" class="form-control btn btn-success w-50 align-self-center" />
-                        {{ form_end (form) }}
+                            {{ form_row(form.filename) }}
+                            <div class="align-self-center">
+                                {{ form_row(form.is_public, {'label_attr': {'class': 'font-weight-bold mt-4 mb-5 ml-2'}}) }}
+                            </div>
+                            <input type="submit" value="Wyślij" class="form-control btn btn-success w-50 align-self-center" />
+                        {{ form_end(form) }}
 
-                        {% for message in app.flashes('sucess')%}
-                        <div class="'alert alert-success">
-                            {{ message }}
-                        </div>
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
                         {% endfor %}
                         {% for message in app.flashes('error') %}
-                        <div class = 'alert alert-danger'>
-                            {{ message }}
-                        </div>
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -135,6 +134,4 @@
 
         </div>
     </section>
-
-
 {% endblock %}
