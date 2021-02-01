@@ -24,7 +24,14 @@
                     <div class="card" style="width: 18rem;">
                         <img src="/public/images/hosting/{{ photo.filename }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">Dodał: {{ photo.user.username }}</h5>
+
+                            <button type="button" class="btn btn-primary">
+                                Like <span class="badge badge-light">{{ photo.likes }}</span>
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                               Obserwuj <span class="badge badge-light"></span>
+                            </button>
                         </div>
                     </div>
                 {% endfor %}

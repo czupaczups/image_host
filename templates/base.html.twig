@@ -28,6 +28,9 @@
                     <li class="nav-item {% if app.request.get('_route') == 'my_photos' %}active{% endif %}">
                         <a class="nav-link" href="{{ path('my_photos') }}">Moje zdjęcia</a>
                     </li>
+                    <li class="nav-item {% if app.request.get('_route') == 'observed' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('observed') }}">Obserwowani</a>
+                    </li>
                     {% if app.user %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj się</a>
