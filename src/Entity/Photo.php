@@ -37,6 +37,11 @@ class Photo
      */
     private $is_public;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $likes;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Photo
     public function setIsPublic(bool $is_public): self
     {
         $this->is_public = $is_public;
+
+        return $this;
+    }
+
+    public function getlikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setlikes(?int $likes): self
+    {
+        $this->likes = $likes;
 
         return $this;
     }

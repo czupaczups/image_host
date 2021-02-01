@@ -47,6 +47,11 @@ class User implements UserInterface
      */
     private $photos;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Subskrypcje", mappedBy="Kto", cascade={"persist", "remove"})
+     */
+    private $subskrypcje;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -163,6 +168,23 @@ class User implements UserInterface
             if ($photo->getUser() === $this) {
                 $photo->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getSubskrypcje(): ?Subskrypcje
+    {
+        return $this->subskrypcje;
+    }
+
+    public function setSubskrypcje(Subskrypcje $subskrypcje): self
+    {
+        $this->subskrypcje = $subskrypcje;
+
+        // set the owning side of the relation if necessary
+        if ($subskrypcje->getKto() !== $this) {
+            $subskrypcje->setKto($this);
         }
 
         return $this;
